@@ -1,0 +1,11 @@
+[Unit]
+Description=Unit for app2
+After=app1.service
+
+[Service]
+WorkingDirectory=../app2
+Environment=PORT=%i JAVA_OPTS="-Xms512m -Xmx1G"
+ExecStart=./bin/application_name \
+    -Dconfig.file=./conf/application.conf \
+    -Dhttp.port=$PORT \
+    -Dfile.encoding=UTF8 > application.log 2>&1

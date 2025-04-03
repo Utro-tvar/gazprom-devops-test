@@ -1,0 +1,7 @@
+[Unit]
+Description=Target for run apps
+Requires=app1.service
+Requires=app2@9002.service app2@9003.service
+
+[Install]
+WantedBy=multi-user.target
