@@ -1,0 +1,37 @@
+services:
+  app1:
+    build:
+      context: ./app1
+      dockerfile: Dockerfile
+    container_name: app1
+    environment:
+      - PORT=80
+      - JAVA_OPTS="-Xms512m -Xmx1G"
+    ports:
+      - 9001:80
+  
+  app2_inst1:
+    build:
+      context: ./app2
+      dockerfile: Dockerfile
+    container_name: app2_inst1
+    environment:
+      - PORT=80
+      - JAVA_OPTS="-Xms512m -Xmx1G"
+    ports:
+      - 9002:80
+    depends_on:
+      - app1
+  
+  app2_inst2:
+    build:
+      context: ./app2
+      dockerfile: Dockerfile
+    container_name: app2_inst2
+    environment:
+      - PORT=80
+      - JAVA_OPTS="-Xms512m -Xmx1G"
+    ports:
+      - 9003:80
+    depends_on:
+      - app1
